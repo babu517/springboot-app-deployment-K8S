@@ -1,6 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Job
 metadata:
+  generateName: maint-page-up
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app: springboot-app-rama
   name: springboot-app-rama
