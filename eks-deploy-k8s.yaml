@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: springboot-app
-  name: springboot-app
+    app: springboot-app-rama
+  name: springboot-app-rama
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app
+      app: springboot-app-rama
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: springboot-app-rama
     spec:
       containers:
-      - name: my-springboot-app
+      - name: my-springboot-app-rama
         image: 490167669940.dkr.ecr.ap-southeast-1.amazonaws.com/eks-frontend-app-deployment:frontend-32
         imagePullPolicy: Always
         ports:
@@ -28,9 +28,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: springboot-app
-    k8s-app: springboot-app
-  name: springboot-app
+    app: springboot-app-rama
+    k8s-app: springboot-app-rama
+  name: springboot-app-rama
 spec:
   ports:
   - name: http
@@ -39,4 +39,4 @@ spec:
     targetPort: 8085
   type: LoadBalancer
   selector:
-    app: springboot-app
+    app: springboot-app-rama
