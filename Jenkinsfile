@@ -7,6 +7,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS-CRED')
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         EKS_CLUSTER_NAME = 'sandboxeks1'
+        DOCKER_LOGIN = credentials('docker')
         SONAR_LOGIN = credentials('Sonar-Creds')
     }
     stages {
@@ -45,7 +46,7 @@ pipeline {
         }
         stage('Push to ECR') {
             steps {
-                sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 490167669940.dkr.ecr.ap-southeast-1.amazonaws.com'
+                sh 'docker login -u docker'
                 sh "docker tag frontendapp-${app}:latest  harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}"
                 sh "docker push harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}"
             }
