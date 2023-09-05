@@ -8,7 +8,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         EKS_CLUSTER_NAME = 'sandboxeks1'
         SONAR_LOGIN = credentials('Sonar-Creds')
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('docker')
     }
     stages {
         stage('Checkout') {
@@ -43,6 +43,11 @@ pipeline {
             steps {
                 sh 'docker build -t frontendapp-${app} .'
             }
+        }
+        stage('Login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+           }
         }
         stage('Push to DOCKER') {
             steps {
