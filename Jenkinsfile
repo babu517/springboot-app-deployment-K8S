@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker push harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}'
+                sh 'docker push harishbabugunda/frontendapps:${app}-${BUILD_NUMBER}'
             }
         }
         stage('Deploying ECR Image to EKS') {
