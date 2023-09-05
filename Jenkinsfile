@@ -9,6 +9,7 @@ pipeline {
         EKS_CLUSTER_NAME = 'sandboxeks1'
         SONAR_LOGIN = credentials('Sonar-Creds')
         DOCKERHUB_CREDENTIALS = credentials('docker')
+        IMAGE_TAG = v1.0
     }
     stages {
         stage('Checkout') {
@@ -51,7 +52,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker push harishbabugunda/frontendapps:tagname'
+                sh 'docker push harishbabugunda/frontendapps:IMAGE_TAG'
             }
         }
         stage('Deploying Docker Image to EKS') {
