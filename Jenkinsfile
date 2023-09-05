@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker push harishbabugunda/frontendapp:latest'
+                sh 'docker push harishbabugunda/frontendapp:v1.0'
             }
         }
         stage('Deploying Docker Image to EKS') {
