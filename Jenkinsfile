@@ -7,8 +7,8 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS-CRED')
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         EKS_CLUSTER_NAME = 'sandboxeks1'
-        DOCKER_LOGIN = credentials('docker')
         SONAR_LOGIN = credentials('Sonar-Creds')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage('Checkout') {
@@ -46,8 +46,6 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker login -u docker'
-                sh "docker tag frontendapp-${app}:latest  harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}"
                 sh "docker push harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}"
             }
         }
