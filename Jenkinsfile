@@ -44,7 +44,7 @@ pipeline {
                 sh 'docker build -t frontendapp-${app} .'
             }
         }
-        stage('Push to ECR') {
+        stage('Push to DOCKER') {
             steps {
                 sh 'docker login -u docker'
                 sh "docker tag frontendapp-${app}:latest  harishbabugunda/frontendapp:${app}-${BUILD_NUMBER}"
