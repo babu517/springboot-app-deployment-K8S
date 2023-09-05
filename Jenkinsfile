@@ -9,7 +9,7 @@ pipeline {
         EKS_CLUSTER_NAME = 'sandboxeks1'
         SONAR_LOGIN = credentials('Sonar-Creds')
         DOCKERHUB_CREDENTIALS = credentials('docker')
-        IMAGE_TAG = v1.0
+        IMAGE_TAG = 'v1.0'
     }
     stages {
         stage('Checkout') {
