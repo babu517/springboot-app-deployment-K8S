@@ -21,7 +21,7 @@ spec:
     spec:
      containers:
      - name: private-reg-container
-       image: ramakrishna8253/week
+       image: ramakrishna8253/week:v5
     imagePullSecrets:
     - name: registry-credential-rama
     
