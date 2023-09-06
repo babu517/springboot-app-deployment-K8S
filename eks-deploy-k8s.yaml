@@ -1,24 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
-namespace: default
 metadata:
-  generateName: maint-page-up
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    argocd.argoproj.io/sync-wave: "1"
   labels:
-    app: springboot-app-rama
-  name: springboot-app-rama
+    app: springboot-app
+  name: springboot-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app-rama
+      app: springboot-app
   template:
     metadata:
       labels:
-        app: springboot-app-rama
+        app: springboot-app
     spec:
       containers:
       - name: private-reg-container
@@ -29,16 +23,15 @@ spec:
         - containerPort: 8085
           name: http
           protocol: TCP
-          
 # service type loadbalancer       
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: springboot-app-rama
-    k8s-app: springboot-app-rama
-  name: springboot-app-rama
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
 spec:
   ports:
   - name: http
@@ -47,4 +40,4 @@ spec:
     targetPort: 8085
   type: LoadBalancer
   selector:
-    app: springboot-app-rama
+    app: springboot-app
