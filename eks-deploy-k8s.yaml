@@ -1,5 +1,6 @@
 apiVersion: apps/v1
 kind: Job
+namespace: default
 metadata:
   generateName: maint-page-up
   annotations:
