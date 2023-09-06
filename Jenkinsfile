@@ -51,6 +51,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
+                sh 'docker tag frontendapp-${app}:latest .'
                 sh 'docker push harishbabugunda/frontendapps:latest '
             }
         }
