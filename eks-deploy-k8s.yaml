@@ -24,10 +24,9 @@ spec:
        image: ramakrishna8253/week:v5
     imagePullSecrets:
     - name: registry-credential-rama
-    
-        - containerPort: 8085
-          name: http
-          protocol: TCP
+      - containerPort: 8085
+        name: http
+        protocol: TCP
           
 # service type loadbalancer       
 ---
