@@ -19,14 +19,16 @@ spec:
       labels:
         app: springboot-app-rama
     spec:
-      containers:
-      - name: my-springboot-app-rama
-        image: 490167669940.dkr.ecr.ap-southeast-1.amazonaws.com/eks-frontend-app-deployment:frontend-32
-        imagePullPolicy: Always
-        ports:
+     containers:
+     - name: private-reg-container
+       image: ramakrishna8253/week
+    imagePullSecrets:
+    - name: registry-credential-rama
+    
         - containerPort: 8085
           name: http
           protocol: TCP
+          
 # service type loadbalancer       
 ---
 apiVersion: v1
