@@ -22,7 +22,7 @@ spec:
      containers:
      - name: private-reg-container
        image: ramakrishna8253/week:v5
-    imagePullSecrets:
+       imagePullSecrets:
     - name: registry-credential-rama
       - containerPort: 8085
         name: http
