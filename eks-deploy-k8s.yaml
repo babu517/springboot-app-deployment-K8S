@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Job
+kind: Deployment
 namespace: default
 metadata:
   generateName: maint-page-up
