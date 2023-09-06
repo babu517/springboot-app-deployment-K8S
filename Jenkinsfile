@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker push ramakrishna8254/week:v1 '
+                sh 'docker push ramakrishna8254/week:v1'
             }
         }
         stage('Deploying Docker Image to EKS') {
