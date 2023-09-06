@@ -1,6 +1,7 @@
 ---
 apiVersion: v1
 kind: pods
+namespace: default
 metadata:
   labels:
     app: springboot-app-1
