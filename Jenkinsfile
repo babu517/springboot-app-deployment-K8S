@@ -8,7 +8,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'ap-southeast-1'
         EKS_CLUSTER_NAME = 'sandboxeks1'
         SONAR_LOGIN = credentials('Sonar-Creds')
-        DOCKERHUB_CREDENTIALS = credentials('docker')
+        DOCKERHUB_CREDENTIALS = credentials('docker-rama')
     }
     stages {
         stage('Checkout') {
@@ -51,8 +51,7 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker tag frontendapp-${app}:latest .'
-                sh 'docker push harishbabugunda/frontendapps:latest '
+                sh 'docker push ramakrishna8254/week:v1 '
             }
         }
         stage('Deploying Docker Image to EKS') {
