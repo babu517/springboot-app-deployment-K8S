@@ -51,7 +51,8 @@ pipeline {
         }
         stage('Push to DOCKER') {
             steps {
-                sh 'docker push ramakrishna8254/week:v1'
+                sh 'docker tag frontendapp-${app} ramakrishna8254/week:v5'
+                sh 'docker push ramakrishna8254/week:v5'
             }
         }
         stage('Deploying Docker Image to EKS') {
