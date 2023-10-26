@@ -17,9 +17,26 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: "origin/${env.BRANCH_NAME}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/babu517/springboot-app-deployment-K8S']]])
             }
         }
-        stage('Code Build') {
+        stage('Build and Test') {
             steps {
-                sh 'mvn clean install'
+                
+                script {
+                    // Get the current branch name
+                    currentBranch = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+
+                    // Get the current repository URL
+                    currentRepoUrl = env.BUILD_URL // You can use a different environment variable for the repository URL
+
+                    if (currentBranch == 'main' && currentRepoUrl == 'https://github.com/babu517/springboot-app-deployment-K8S.git') {
+                        echo 'Building and testing for UAT branch in the specific repository'
+                        // Add your build and test commands for UAT branch here
+                    } else if (currentBranch == 'dev' && currentRepoUrl == 'https://github.com/babu517/springboot-app-deployment-K8S.git') {
+                        echo 'Building and testing for Dev branch in the specific repository'
+                        // Add your build and test commands for Dev branch here
+                    } else {
+                        echo 'Skipping build for other branches or repositories'
+                    }
+                }
             }
         }
         stage('Compile and Run Sonar Analysis') {
